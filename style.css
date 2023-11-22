@@ -1,0 +1,90 @@
+
+
+.yes{
+    background: linear-gradient(
+        to right,
+        #b594fc 20%,
+        #00affa 30%,
+        #0190cd 70%,
+        #a681fe 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
+
+@keyframes textShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* tooltip */
+[aria-label][tooltip-position] {
+    position: relative;
+    letter-spacing: 0.1rem;
+  }
+  
+  [aria-label][tooltip-position]::before,
+  [aria-label][tooltip-position]::after {
+    --scale: 0;
+    position: absolute;
+    font-size: 1rem;
+    transition: transform 100ms;
+    transition-timing-function: linear;
+  }
+  
+  [aria-label][tooltip-position]:hover::before,
+  [aria-label][tooltip-position]:hover::after {
+    --scale: 1;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.45, 1.93);
+  }
+  
+  [aria-label][tooltip-position]::before {
+    content: attr(aria-label);
+    background-color: var(--tooltip-color);
+    padding: 0.5em;
+    border-radius: 0.3em;
+    width: max-content;
+    max-width: 100%;
+    text-align: center;
+    transform: scale(0);
+  }
+  
+  [aria-label][tooltip-position]::after {
+    content: "";
+    border: var(--arrow-size) solid transparent;
+  }
+  
+  [aria-label][tooltip-position]::before,
+  [aria-label][tooltip-position]::after {
+    --tooltip-color: #568effe2;
+    --arrow-size: 0.5rem;
+    --scale: 0;
+  
+    z-index: 1;
+    font-size: 1rem;
+    transform: translate(var(--translate-x), var(--translate-y))
+      scale(var(--scale));
+  }
+  
+  /* top */
+  [aria-label][tooltip-position="top"]::before {
+    position: absolute;
+    --translate-x: -50%;
+    --translate-y: calc(-100% - var(--arrow-size));
+
+    top: 0px;
+    left: 50%;
+    transform-origin: bottom center;
+  }
+
+
+/* tool tip end */
+
